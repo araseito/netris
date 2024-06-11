@@ -16,7 +16,7 @@ const colors = [
 ];
 
 const player = {
-    pos: {x: 0, y: 0},
+    pos: { x: 0, y: 0 },
     matrix: null,
     score: 0,
 };
@@ -90,7 +90,7 @@ function draw() {
     context.fillStyle = '#000';
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    drawMatrix(arena, {x: 0, y: 0});
+    drawMatrix(arena, { x: 0, y: 0 });
     drawMatrix(player.matrix, player.pos);
 }
 
@@ -147,7 +147,7 @@ function playerReset() {
     player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) -
-                   (player.matrix[0].length / 2 | 0);
+        (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
         arena.forEach(row => row.fill(0));
         player.score = 0;
@@ -175,8 +175,8 @@ function collide(arena, player) {
     for (let y = 0; y < m.length; ++y) {
         for (let x = 0; x < m[y].length; ++x) {
             if (m[y][x] !== 0 &&
-               (arena[y + o.y] &&
-                arena[y + o.y][x + o.x]) !== 0) {
+                (arena[y + o.y] &&
+                    arena[y + o.y][x + o.x]) !== 0) {
                 return true;
             }
         }
