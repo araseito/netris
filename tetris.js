@@ -216,4 +216,53 @@ function updateScore() {
 function update(time = 0) {
     if (!gameStarted) return;
 
-    const deltaTime = time - last
+    const deltaTime = time - lastTime;
+
+    dropCounter += deltaTime;
+    if (dropCounter > dropInterval) {
+        playerDrop();
+    }
+
+    lastTime = time;
+
+    draw();
+    requestAnimationFrame(update);
+}
+
+document.addEventListener('keydown', event => {
+    if (event.keyCode === 37) {
+        playerMove(-1);
+    } else if (event.keyCode === 39) {
+        playerMove(1);
+    } else if (event.keyCode === 40) {
+        playerDrop();
+    } else if (event.keyCode === 81) { // Q key for starting and rotating left
+        if (!gameStarted) {
+            gameStarted = true;
+            playerReset();
+            update();
+        } else {
+            playerRotate(-1);
+        }
+    } else if (event.keyCode === 87) { // W key for rotating right
+        playerRotate(1);
+    }
+});
+
+function updateIllustration() {
+    const illustrationContainer = document.getElementById('illustration-container');
+    if (player.score >= 400) {
+        illustrationContainer.style.backgroundColor = '#FF0D72';
+    } else if (player.score >= 300) {
+        illustrationContainer.style.backgroundColor = '#0DC2FF';
+    } else if (player.score >= 200) {
+        illustrationContainer.style.backgroundColor = '#0DFF72';
+    } else if (player.score >= 100) {
+        illustrationContainer.style.backgroundColor = '#F538FF';
+    } else {
+        illustrationContainer.style.backgroundColor = '#FFE138';
+    }
+}
+
+// 初回ロード時にはゲームはスタートしない
+draw();
