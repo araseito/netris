@@ -297,17 +297,19 @@ function startGame() {
 function resizeCanvas() {
     const container = document.querySelector('.tetris-container');
     const aspectRatio = canvas.width / canvas.height;
-    const newWidth = container.clientWidth;
-    const newHeight = newWidth / aspectRatio;
+    const containerAspectRatio = container.clientWidth / container.clientHeight;
 
-    if (newHeight > container.clientHeight) {
-        const heightLimitedWidth = container.clientHeight * aspectRatio;
-        canvas.style.width = `${heightLimitedWidth}px`;
-        canvas.style.height = `${container.clientHeight}px`;
+    let newWidth, newHeight;
+    if (aspectRatio > containerAspectRatio) {
+        newWidth = container.clientWidth;
+        newHeight = newWidth / aspectRatio;
     } else {
-        canvas.style.width = `${newWidth}px`;
-        canvas.style.height = `${newHeight}px`;
+        newHeight = container.clientHeight;
+        newWidth = newHeight * aspectRatio;
     }
+
+    canvas.style.width = `${newWidth}px`;
+    canvas.style.height = `${newHeight}px`;
 }
 
 window.addEventListener('resize', resizeCanvas);
