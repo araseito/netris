@@ -5,15 +5,29 @@ body {
     height: 100vh;
     background-color: #000;
     margin: 0;
+    overflow: hidden;
 }
 
-.tetris-container {
+.container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #222;
     border: 2px solid #fff;
+    padding: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
+    color: #fff;
+}
+
+.tetris-container {
+    background-color: #222;
     padding: 20px;
 }
 
@@ -23,14 +37,11 @@ canvas {
 }
 
 #score-container {
-    margin-top: 10px;
-    color: #fff;
+    margin-bottom: 20px;
     font-size: 1.2em;
 }
 
 #controls {
-    margin-top: 20px;
-    color: #fff;
     text-align: center;
 }
 
@@ -40,4 +51,10 @@ canvas {
 
 #controls p {
     margin: 5px 0;
+}
+
+#illustration-container {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
 }
