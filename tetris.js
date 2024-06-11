@@ -185,4 +185,44 @@ function collide(arena, player) {
 }
 
 function arenaSweep() {
-    outer: for
+    outer: for (let y = arena.length - 1; y > 0; --y) {
+        for (let x = 0; x < arena[y].length; ++x) {
+            if (arena[y][x] === 0) {
+                continue outer;
+            }
+        }
+
+        const row = arena.splice(y, 1)[0].fill(0);
+        arena.unshift(row);
+    }
+}
+
+function updateScore() {
+    document.getElementById('score').innerText = player.score;
+}
+
+let dropCounter = 0;
+let dropInterval = 1000;
+
+let lastTime = 0;
+function update(time = 0) {
+    const deltaTime = time - lastTime;
+
+    dropCounter += deltaTime;
+    if (dropCounter > dropInterval) {
+        playerDrop();
+    }
+
+    lastTime = time;
+
+    draw();
+    requestAnimationFrame(update);
+}
+
+document.addEventListener('keydown', event => {
+    if (event.keyCode === 37) {
+        playerMove(-1);
+    } else if (event.keyCode === 39) {
+        playerMove(1);
+    } else if (event.keyCode === 40) {
+        playerDrop
