@@ -9,6 +9,7 @@ body {
 
 .tetris-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #222;
@@ -19,4 +20,10 @@ body {
 canvas {
     background-color: #111;
     border: 1px solid #fff;
+}
+
+#score-container {
+    margin-top: 10px;
+    color: #fff;
+    font-size: 1.2em;
 }
