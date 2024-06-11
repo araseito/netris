@@ -60,13 +60,14 @@ canvas {
 }
 
 #illustration-container {
-    width: 90px;
-    height: 90px;
+    width: 270px; /* Adjusted width for 2:1 aspect ratio */
+    height: 540px; /* Adjusted height for 2:1 aspect ratio */
 }
 
 #illustration {
     width: 100%;
     height: 100%;
+    object-fit: cover; /* Maintain aspect ratio */
 }
 
 #game-over {
