@@ -227,4 +227,26 @@ document.addEventListener('keydown', event => {
         playerMove(-1);
     } else if (event.keyCode === 39) {
         playerMove(1);
-    } else if (event.key &#8203;:citation[oaicite:0]{index=0}&#8203;
+    } else if (event.keyCode === 40) {
+        playerDrop();
+    } else if (event.keyCode === 81) { // Q key for starting and rotating left
+        if (!gameStarted) {
+            gameStarted = true;
+            playerReset();
+            update();
+        } else {
+            playerRotate(-1);
+        }
+    } else if (event.keyCode === 87) { // W key for rotating right
+        playerRotate(1);
+    }
+});
+
+function startGame() {
+    gameStarted = true;
+    playerReset();
+    update();
+}
+
+// 初回ロード時にはゲームはスタートしない
+draw();
