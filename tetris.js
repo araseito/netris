@@ -1,6 +1,6 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-context.scale(18, 18);
+context.scale(1.5, 1.5);
 
 const arena = createMatrix(10, 20);
 
@@ -306,6 +306,11 @@ function resizeCanvas() {
     } else {
         newHeight = container.clientHeight;
         newWidth = newHeight * aspectRatio;
+    }
+
+    if (newWidth > canvas.width) {
+        newWidth = canvas.width;
+        newHeight = canvas.height;
     }
 
     canvas.style.width = `${newWidth}px`;
