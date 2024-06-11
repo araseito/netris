@@ -1,6 +1,6 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-context.scale(30, 30);
+context.scale(27, 27);
 
 const arena = createMatrix(10, 20);
 
@@ -260,19 +260,19 @@ document.addEventListener('keydown', event => {
 });
 
 function updateIllustration() {
-    const illustrationContainer = document.getElementById('illustration-container');
+    const illustration = document.getElementById('illustration');
     if (player.score >= 16000) {
-        illustrationContainer.style.backgroundColor = '#FF0D72';
+        illustration.src = 'gall/gall05.jpg';
     } else if (player.score >= 8000) {
-        illustrationContainer.style.backgroundColor = '#0DC2FF';
+        illustration.src = 'gall/gall04.jpg';
     } else if (player.score >= 4000) {
-        illustrationContainer.style.backgroundColor = '#0DFF72';
+        illustration.src = 'gall/gall03.jpg';
     } else if (player.score >= 2000) {
-        illustrationContainer.style.backgroundColor = '#F538FF';
+        illustration.src = 'gall/gall02.jpg';
     } else if (player.score >= 1000) {
-        illustrationContainer.style.backgroundColor = '#FFE138';
+        illustration.src = 'gall/gall01.jpg';
     } else {
-        illustrationContainer.style.backgroundColor = '#FFF';
+        illustration.src = 'gall/gall01.jpg';
     }
 }
 
