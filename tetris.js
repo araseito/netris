@@ -19,12 +19,15 @@ const player = {
     pos: { x: 0, y: 0 },
     matrix: null,
     score: 0,
+    lines: 0
 };
 
 let dropCounter = 0;
 let dropInterval = 1000;
 let lastTime = 0;
 let gameStarted = false;
+let gameOver = false;
+let dropSpeedIncreaseCounter = 0;
 
 function createMatrix(w, h) {
     const matrix = [];
@@ -138,6 +141,15 @@ function playerDrop() {
         arenaSweep();
         updateScore();
         updateIllustration();
+        dropSpeedIncreaseCounter++;
+        if (dropSpeedIncreaseCounter >= 10) {
+            dropInterval *= 0.9;
+            dropSpeedIncreaseCounter = 0;
+        }
+        if (gameOver) {
+            showGameOver();
+            return;
+        }
     }
     dropCounter = 0;
 }
@@ -156,9 +168,8 @@ function playerReset() {
     player.pos.x = (arena[0].length / 2 | 0) -
         (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
-        arena.forEach(row => row.fill(0));
-        player.score = 0;
-        updateScore();
+        gameOver = true;
+        gameStarted = false;
     }
 }
 
@@ -206,6 +217,7 @@ function arenaSweep() {
 
         player.score += rowCount * 100;
         rowCount *= 2;
+        player.lines++;
     }
 }
 
@@ -238,9 +250,7 @@ document.addEventListener('keydown', event => {
         playerDrop();
     } else if (event.keyCode === 81) { // Q key for starting and rotating left
         if (!gameStarted) {
-            gameStarted = true;
-            playerReset();
-            update();
+            startGame();
         } else {
             playerRotate(-1);
         }
@@ -251,18 +261,57 @@ document.addEventListener('keydown', event => {
 
 function updateIllustration() {
     const illustrationContainer = document.getElementById('illustration-container');
-    if (player.score >= 400) {
+    if (player.score >= 16000) {
         illustrationContainer.style.backgroundColor = '#FF0D72';
-    } else if (player.score >= 300) {
+    } else if (player.score >= 8000) {
         illustrationContainer.style.backgroundColor = '#0DC2FF';
-    } else if (player.score >= 200) {
+    } else if (player.score >= 4000) {
         illustrationContainer.style.backgroundColor = '#0DFF72';
-    } else if (player.score >= 100) {
+    } else if (player.score >= 2000) {
         illustrationContainer.style.backgroundColor = '#F538FF';
-    } else {
+    } else if (player.score >= 1000) {
         illustrationContainer.style.backgroundColor = '#FFE138';
+    } else {
+        illustrationContainer.style.backgroundColor = '#FFF';
     }
 }
+
+function showGameOver() {
+    const gameOverElement = document.getElementById('game-over');
+    gameOverElement.style.display = 'block';
+    document.getElementById('final-score').innerText = player.score;
+}
+
+function startGame() {
+    gameStarted = true;
+    gameOver = false;
+    dropInterval = 1000;
+    player.score = 0;
+    player.lines = 0;
+    document.getElementById('game-over').style.display = 'none';
+    arena.forEach(row => row.fill(0));
+    playerReset();
+    update();
+}
+
+function resizeCanvas() {
+    const container = document.querySelector('.tetris-container');
+    const aspectRatio = canvas.width / canvas.height;
+    const newWidth = container.clientWidth;
+    const newHeight = newWidth / aspectRatio;
+
+    if (newHeight > container.clientHeight) {
+        const heightLimitedWidth = container.clientHeight * aspectRatio;
+        canvas.style.width = `${heightLimitedWidth}px`;
+        canvas.style.height = `${container.clientHeight}px`;
+    } else {
+        canvas.style.width = `${newWidth}px`;
+        canvas.style.height = `${newHeight}px`;
+    }
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
 // 初回ロード時にはゲームはスタートしない
 draw();
