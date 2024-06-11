@@ -21,6 +21,11 @@ const player = {
     score: 0,
 };
 
+let dropCounter = 0;
+let dropInterval = 1000;
+let lastTime = 0;
+let gameStarted = false;
+
 function createMatrix(w, h) {
     const matrix = [];
     while (h--) {
@@ -201,11 +206,9 @@ function updateScore() {
     document.getElementById('score').innerText = player.score;
 }
 
-let dropCounter = 0;
-let dropInterval = 1000;
-
-let lastTime = 0;
 function update(time = 0) {
+    if (!gameStarted) return;
+
     const deltaTime = time - lastTime;
 
     dropCounter += deltaTime;
@@ -224,5 +227,4 @@ document.addEventListener('keydown', event => {
         playerMove(-1);
     } else if (event.keyCode === 39) {
         playerMove(1);
-    } else if (event.keyCode === 40) {
-        playerDrop
+    } else if (event.key &#8203;:citation[oaicite:0]{index=0}&#8203;
