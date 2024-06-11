@@ -42,8 +42,6 @@ body {
 canvas {
     background-color: #111;
     border: 1px solid #fff;
-    width: 100%;
-    height: auto;
 }
 
 #score-container {
