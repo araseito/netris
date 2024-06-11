@@ -7,19 +7,26 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="tetris-container">
-        <canvas id="tetris" width="300" height="600"></canvas>
-        <div id="score-container">
-            Score: <span id="score">0</span>
+    <div class="container">
+        <div class="sidebar">
+            <div id="illustration-container"></div>
         </div>
-        <div id="controls">
-            <h3>Controls</h3>
-            <p>Start Game: Q Key</p>
-            <p>Move Left: Left Arrow</p>
-            <p>Move Right: Right Arrow</p>
-            <p>Move Down: Down Arrow</p>
-            <p>Rotate Left: Q</p>
-            <p>Rotate Right: W</p>
+        <div class="tetris-container">
+            <canvas id="tetris" width="300" height="600"></canvas>
+        </div>
+        <div class="sidebar">
+            <div id="score-container">
+                Score: <span id="score">0</span>
+            </div>
+            <div id="controls">
+                <h3>Controls</h3>
+                <p>Start Game: Q Key</p>
+                <p>Move Left: Left Arrow</p>
+                <p>Move Right: Right Arrow</p>
+                <p>Move Down: Down Arrow</p>
+                <p>Rotate Left: Q</p>
+                <p>Rotate Right: W</p>
+            </div>
         </div>
     </div>
     <script src="tetris.js"></script>
