@@ -136,6 +136,8 @@ function playerDrop() {
         merge(arena, player);
         playerReset();
         arenaSweep();
+        updateScore();
+        updateIllustration();
     }
     dropCounter = 0;
 }
@@ -190,6 +192,7 @@ function collide(arena, player) {
 }
 
 function arenaSweep() {
+    let rowCount = 1;
     outer: for (let y = arena.length - 1; y > 0; --y) {
         for (let x = 0; x < arena[y].length; ++x) {
             if (arena[y][x] === 0) {
@@ -199,6 +202,10 @@ function arenaSweep() {
 
         const row = arena.splice(y, 1)[0].fill(0);
         arena.unshift(row);
+        ++y;
+
+        player.score += rowCount * 100;
+        rowCount *= 2;
     }
 }
 
@@ -209,44 +216,4 @@ function updateScore() {
 function update(time = 0) {
     if (!gameStarted) return;
 
-    const deltaTime = time - lastTime;
-
-    dropCounter += deltaTime;
-    if (dropCounter > dropInterval) {
-        playerDrop();
-    }
-
-    lastTime = time;
-
-    draw();
-    requestAnimationFrame(update);
-}
-
-document.addEventListener('keydown', event => {
-    if (event.keyCode === 37) {
-        playerMove(-1);
-    } else if (event.keyCode === 39) {
-        playerMove(1);
-    } else if (event.keyCode === 40) {
-        playerDrop();
-    } else if (event.keyCode === 81) { // Q key for starting and rotating left
-        if (!gameStarted) {
-            gameStarted = true;
-            playerReset();
-            update();
-        } else {
-            playerRotate(-1);
-        }
-    } else if (event.keyCode === 87) { // W key for rotating right
-        playerRotate(1);
-    }
-});
-
-function startGame() {
-    gameStarted = true;
-    playerReset();
-    update();
-}
-
-// 初回ロード時にはゲームはスタートしない
-draw();
+    const deltaTime = time - last
