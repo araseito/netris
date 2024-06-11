@@ -28,13 +28,6 @@ canvas {
     font-size: 1.2em;
 }
 
-#start-button {
-    margin-top: 10px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-}
-
 #controls {
     margin-top: 20px;
     color: #fff;
