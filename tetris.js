@@ -3,6 +3,7 @@ const context = canvas.getContext('2d');
 context.scale(18, 18);
 
 const arena = createMatrix(10, 20);
+const bgm = document.getElementById('bgm');
 
 const colors = [
     null,
@@ -148,6 +149,7 @@ function playerDrop() {
         }
         if (gameOver) {
             showGameOver();
+            bgm.pause();
             return;
         }
     }
@@ -251,6 +253,7 @@ document.addEventListener('keydown', event => {
     } else if (event.keyCode === 81) { // Q key for starting and rotating left
         if (!gameStarted) {
             startGame();
+            bgm.play();
         } else {
             playerRotate(-1);
         }
