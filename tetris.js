@@ -5,7 +5,7 @@ const context = canvas.getContext('2d');
 const bgm = new Audio('bgm.mp3');
 bgm.loop = true;
 
-const arena = createMatrix(10, 20);
+const arena = createMatrix(10, 10);
 
 const colors = [
     null,
@@ -302,7 +302,7 @@ function startGame() {
 
 function resizeCanvas() {
     const container = document.querySelector('.tetris-container');
-    const aspectRatio = 1 / 2; // 1:2
+    const aspectRatio = 1 / 1; // 1:1
     const containerAspectRatio = container.clientWidth / container.clientHeight;
 
     let newWidth, newHeight;
