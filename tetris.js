@@ -291,3 +291,37 @@ function showGameOver() {
 function startGame() {
     gameStarted = true;
     gameOver = false;
+    dropInterval = 1000;
+    player.score = 0;
+    player.lines = 0;
+    document.getElementById('game-over').style.display = 'none';
+    arena.forEach(row => row.fill(0));
+    playerReset();
+    update();
+}
+
+function resizeCanvas() {
+    const container = document.querySelector('.tetris-container');
+    const aspectRatio = 10 / 20;
+    const containerAspectRatio = container.clientWidth / container.clientHeight;
+
+    let newWidth, newHeight;
+    if (aspectRatio > containerAspectRatio) {
+        newWidth = container.clientWidth;
+        newHeight = newWidth / aspectRatio;
+    } else {
+        newHeight = container.clientHeight;
+        newWidth = newHeight * aspectRatio;
+    }
+
+    canvas.width = newWidth;
+    canvas.height = newHeight;
+
+    context.scale(newWidth / 10, newHeight / 20);
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// 初回ロード時にはゲームはスタートしない
+draw();
