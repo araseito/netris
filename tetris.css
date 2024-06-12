@@ -28,7 +28,7 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     margin: 0 10px;
     color: #fff;
@@ -73,7 +73,6 @@ canvas {
 #illustration-container {
     width: 100%;
     height: auto;
-    aspect-ratio: 2 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +81,7 @@ canvas {
 #illustration {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 #game-over {
