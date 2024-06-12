@@ -1,11 +1,13 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
+const nextBlockCanvas = document.getElementById('next-block-canvas');
+const nextBlockContext = nextBlockCanvas.getContext('2d');
 
 // BGMの設定
 const bgm = new Audio('bgm.mp3');
 bgm.loop = true;
 
-const arena = createMatrix(10, 10);
+const arena = createMatrix(10, 20);
 
 const colors = [
     null,
@@ -21,6 +23,7 @@ const colors = [
 const player = {
     pos: { x: 0, y: 0 },
     matrix: null,
+    next: null,
     score: 0,
     lines: 0
 };
@@ -86,7 +89,9 @@ function createPiece(type) {
     }
 }
 
-function drawMatrix(matrix, offset) {
+function drawMatrix(matrix, offset, context) {
+    context.fillStyle = '#000';
+    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
@@ -98,11 +103,9 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-    context.fillStyle = '#000';
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    drawMatrix(arena, { x: 0, y: 0 });
-    drawMatrix(player.matrix, player.pos);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawMatrix(arena, { x: 0, y: 0 }, context);
+    drawMatrix(player.matrix, player.pos, context);
 }
 
 function merge(arena, player) {
@@ -167,8 +170,11 @@ function playerMove(dir) {
 }
 
 function playerReset() {
-    const pieces = 'TJLOSZI';
-    player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
+    if (player.next === null) {
+        player.next = createPiece('TJLOSZI'[Math.random() * 7 | 0]);
+    }
+    player.matrix = player.next;
+    player.next = createPiece('TJLOSZI'[Math.random() * 7 | 0]);
     player.pos.y = 0;
     player.pos.x = (arena[0].length / 2 | 0) -
         (player.matrix[0].length / 2 | 0);
@@ -176,6 +182,7 @@ function playerReset() {
         gameOver = true;
         gameStarted = false;
     }
+    drawMatrix(player.next, { x: 1, y: 1 }, nextBlockContext);
 }
 
 function playerRotate(dir) {
@@ -302,7 +309,7 @@ function startGame() {
 
 function resizeCanvas() {
     const container = document.querySelector('.tetris-container');
-    const aspectRatio = 1 / 1; // 1:1
+    const aspectRatio = 1 / 2; // 1:2
     const containerAspectRatio = container.clientWidth / container.clientHeight;
 
     let newWidth, newHeight;
