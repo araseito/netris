@@ -28,11 +28,11 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin: 0 10px;
     color: #fff;
-    flex: 1;
+    width: 43.75%; /* 横幅の7/16を占める */
 }
 
 .tetris-container {
@@ -41,9 +41,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 2;
-    width: 45%; /* 横幅の45%を占める */
-    height: 100%; /* 縦幅は100% */
+    width: 28.125%; /* 横幅の4.5/16を占める */
+    height: 100%;
 }
 
 canvas {
@@ -60,6 +59,7 @@ canvas {
 
 #controls {
     text-align: center;
+    font-size: 0.9em; /* フォントサイズを小さく */
 }
 
 #controls h3 {
