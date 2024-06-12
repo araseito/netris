@@ -317,7 +317,7 @@ function resizeCanvas() {
     canvas.width = newWidth;
     canvas.height = newHeight;
 
-    context.scale(newWidth / 10, newHeight / 20);
+    context.setTransform(newWidth / 10, 0, 0, newHeight / 20, 0, 0);
 }
 
 window.addEventListener('resize', resizeCanvas);
