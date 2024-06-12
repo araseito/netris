@@ -302,7 +302,7 @@ function startGame() {
 
 function resizeCanvas() {
     const container = document.querySelector('.tetris-container');
-    const aspectRatio = 10 / 20;
+    const aspectRatio = 10 / 20; // 1:2
     const containerAspectRatio = container.clientWidth / container.clientHeight;
 
     let newWidth, newHeight;
@@ -317,7 +317,8 @@ function resizeCanvas() {
     canvas.width = newWidth;
     canvas.height = newHeight;
 
-    context.setTransform(newWidth / 10, 0, 0, newHeight / 20, 0, 0);
+    const scale = newWidth / 10; // 1セルの幅
+    context.setTransform(scale, 0, 0, scale, 0, 0); // スケールを設定
 }
 
 window.addEventListener('resize', resizeCanvas);
