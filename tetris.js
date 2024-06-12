@@ -302,7 +302,7 @@ function startGame() {
 
 function resizeCanvas() {
     const container = document.querySelector('.tetris-container');
-    const aspectRatio = 10 / 20; // 1:2
+    const aspectRatio = 1 / 2; // 1:2
     const containerAspectRatio = container.clientWidth / container.clientHeight;
 
     let newWidth, newHeight;
