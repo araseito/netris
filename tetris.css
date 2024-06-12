@@ -20,7 +20,7 @@ body {
     padding: 20px;
     width: 100%;
     height: 100%;
-    max-width: 1200px;
+    max-width: 1600px;
     max-height: 900px;
     box-sizing: border-box;
 }
@@ -37,14 +37,13 @@ body {
 
 .tetris-container {
     position: relative;
-    background-color: #222;
+    background-color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     flex: 2;
-    width: 100%;
-    height: 100%;
-    aspect-ratio: 1 / 1; /* 1:1 のアスペクト比を維持 */
+    width: 45%; /* 横幅の45%を占める */
+    height: 100%; /* 縦幅は100% */
 }
 
 canvas {
@@ -83,7 +82,7 @@ canvas {
 #illustration {
     width: 100%;
     height: auto;
-    object-fit: cover; /* Maintain aspect ratio */
+    object-fit: cover;
 }
 
 #game-over {
@@ -97,4 +96,18 @@ canvas {
     text-align: center;
     font-size: 2em;
     display: none;
+}
+
+#next-block {
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#next-block-canvas {
+    background-color: #111;
+    border: 1px solid #fff;
 }
