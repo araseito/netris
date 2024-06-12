@@ -90,8 +90,7 @@ function createPiece(type) {
 }
 
 function drawMatrix(matrix, offset, context) {
-    context.fillStyle = '#000';
-    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
