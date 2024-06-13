@@ -26,14 +26,15 @@ body {
     border-radius: 10px; /* 角を丸くする */
 }
 
-.sidebar {
+.left-sidebar, .right-sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     margin: 0 10px;
     color: #fff;
-    width: 43.75%; /* 横幅の7/16を占める */
+    width: 15%; /* 横幅の15%を占める */
+    height: 100%;
 }
 
 .tetris-container {
@@ -42,7 +43,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 28.125%; /* 横幅の4.5/16を占める */
+    width: 70%; /* 横幅の70%を占める */
     height: 100%;
     border-radius: 10px; /* 角を丸くする */
 }
@@ -55,14 +56,22 @@ canvas {
     border-radius: 10px; /* 角を丸くする */
 }
 
-.score-container, .controls-container, .ranking-container, .ad-container {
+.score-container, .controls-container, .ranking-container, .ad-container, .illustration-container {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10px;
     border-radius: 10px;
     text-align: center;
+    box-sizing: border-box; /* ボックスサイズをボーダーを含むようにする */
 }
 
 h3 {
     margin-bottom: 10px;
+}
+
+.illustration-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px; /* 角を丸くする */
 }
