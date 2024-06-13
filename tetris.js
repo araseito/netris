@@ -151,6 +151,8 @@ function playerDrop() {
             dropSpeedIncreaseCounter = 0;
         }
         if (gameOver) {
+            saveScore(player.score);
+            updateRanking();
             showGameOver();
             bgm.pause();
             bgm.currentTime = 0; // 再生位置をリセット
@@ -330,3 +332,34 @@ resizeCanvas();
 
 // 初回ロード時にはゲームはスタートしない
 draw();
+
+function saveScore(score) {
+    const fs = require('fs');
+    let scores;
+    try {
+        scores = JSON.parse(fs.readFileSync('tetris.date'));
+    } catch (err) {
+        scores = [];
+    }
+    scores.push(score);
+    scores.sort((a, b) => b - a);
+    scores = scores.slice(0, 10); // 上位10件を保持
+    fs.writeFileSync('tetris.date', JSON.stringify(scores));
+}
+
+function updateRanking() {
+    const ranking = document.getElementById('ranking');
+    ranking.innerHTML = '';
+    const fs = require('fs');
+    let scores;
+    try {
+        scores = JSON.parse(fs.readFileSync('tetris.date'));
+    } catch (err) {
+        scores = [];
+    }
+    scores.forEach((score, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${score}`;
+        ranking.appendChild(li);
+    });
+}
