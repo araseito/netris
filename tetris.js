@@ -267,17 +267,17 @@ document.addEventListener('keydown', event => {
 function updateIllustration() {
     const illustration = document.getElementById('illustration');
     if (player.score >= 16000) {
-        illustration.src = 'gall05.jpg';
+        illustration.src = 'gall/gall05.jpg';
     } else if (player.score >= 8000) {
-        illustration.src = 'gall04.jpg';
+        illustration.src = 'gall/gall04.jpg';
     } else if (player.score >= 4000) {
-        illustration.src = 'gall03.jpg';
+        illustration.src = 'gall/gall03.jpg';
     } else if (player.score >= 2000) {
-        illustration.src = 'gall02.jpg';
+        illustration.src = 'gall/gall02.jpg';
     } else if (player.score >= 1000) {
-        illustration.src = 'gall01.jpg';
+        illustration.src = 'gall/gall01.jpg';
     } else {
-        illustration.src = 'gall01.jpg';
+        illustration.src = 'gall/gall01.jpg';
     }
 }
 
