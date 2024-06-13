@@ -4,7 +4,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #000;
-    background-image: url('gall/background.jpg');
+    background-image: url('background.jpg');
     background-size: cover;
     background-position: center;
     margin: 0;
@@ -13,8 +13,8 @@ body {
 
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: stretch;
     background-color: rgba(34, 34, 34, 0.8);
     border: 2px solid #fff;
     padding: 20px;
@@ -26,79 +26,44 @@ body {
     border-radius: 10px; /* 角を丸くする */
 }
 
-.sidebar {
+.left-sidebar, .right-sidebar {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
+    justify-content: space-between;
+    width: 15%;
+    height: 100%;
     color: #fff;
-    width: 43.75%; /* 横幅の7/16を占める */
 }
 
-.tetris-container {
-    position: relative;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 28.125%; /* 横幅の4.5/16を占める */
-    height: 100%;
-    border-radius: 10px; /* 角を丸くする */
-}
-
-canvas {
-    background-color: #111;
-    border: 1px solid #fff;
+.left-sidebar .illustration-container,
+.right-sidebar .score-container,
+.right-sidebar .controls-container,
+.right-sidebar .ranking-container,
+.right-sidebar .ad-container {
     width: 100%;
-    height: 100%;
-    border-radius: 10px; /* 角を丸くする */
-}
-
-#score-container {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-}
-
-#controls {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 10px;
     text-align: center;
-    font-size: 0.9em; /* フォントサイズを小さく */
 }
 
-#controls h3 {
-    margin-bottom: 10px;
-}
-
-#controls p {
-    margin: 5px 0;
-}
-
-#illustration-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px; /* 角を丸くする */
-}
-
-#illustration {
+.left-sidebar .illustration-container img {
     width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 10px; /* 角を丸くする */
 }
 
-#game-over {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    font-size: 2em;
-    display: none;
+.tetris-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+}
+
+canvas {
+    background-color: #111;
+    border: 1px solid #fff;
     border-radius: 10px; /* 角を丸くする */
 }
