@@ -1,10 +1,8 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
-const nextBlockCanvas = document.getElementById('next-block-canvas');
-const nextBlockContext = nextBlockCanvas.getContext('2d');
 
 // BGMの設定
-const bgm = new Audio('bgm.mp3');
+const bgm = new Audio('bgm/bgm.mp3');
 bgm.loop = true;
 
 const arena = createMatrix(10, 20);
@@ -181,7 +179,6 @@ function playerReset() {
         gameOver = true;
         gameStarted = false;
     }
-    drawMatrix(player.next, { x: 1, y: 1 }, nextBlockContext);
 }
 
 function playerRotate(dir) {
