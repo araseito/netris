@@ -1,10 +1,6 @@
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
 
-// BGMの設定
-const bgm = new Audio('bgm/bgm.mp3');
-bgm.loop = true;
-
 const arena = createMatrix(10, 20);
 
 const colors = [
@@ -151,9 +147,9 @@ function playerDrop() {
             dropSpeedIncreaseCounter = 0;
         }
         if (gameOver) {
+            saveScore(player.score);
+            updateRanking();
             showGameOver();
-            bgm.pause();
-            bgm.currentTime = 0; // 再生位置をリセット
             return;
         }
     }
@@ -260,7 +256,6 @@ document.addEventListener('keydown', event => {
     } else if (event.keyCode === 81) { // Q key for starting and rotating left
         if (!gameStarted) {
             startGame();
-            bgm.play();
         } else {
             playerRotate(-1);
         }
@@ -272,17 +267,17 @@ document.addEventListener('keydown', event => {
 function updateIllustration() {
     const illustration = document.getElementById('illustration');
     if (player.score >= 16000) {
-        illustration.src = 'gall/gall05.jpg';
+        illustration.src = 'gall05.jpg';
     } else if (player.score >= 8000) {
-        illustration.src = 'gall/gall04.jpg';
+        illustration.src = 'gall04.jpg';
     } else if (player.score >= 4000) {
-        illustration.src = 'gall/gall03.jpg';
+        illustration.src = 'gall03.jpg';
     } else if (player.score >= 2000) {
-        illustration.src = 'gall/gall02.jpg';
+        illustration.src = 'gall02.jpg';
     } else if (player.score >= 1000) {
-        illustration.src = 'gall/gall01.jpg';
+        illustration.src = 'gall01.jpg';
     } else {
-        illustration.src = 'gall/gall01.jpg';
+        illustration.src = 'gall01.jpg';
     }
 }
 
@@ -330,3 +325,34 @@ resizeCanvas();
 
 // 初回ロード時にはゲームはスタートしない
 draw();
+
+function saveScore(score) {
+    const fs = require('fs');
+    let scores;
+    try {
+        scores = JSON.parse(fs.readFileSync('tetris.date'));
+    } catch (err) {
+        scores = [];
+    }
+    scores.push(score);
+    scores.sort((a, b) => b - a);
+    scores = scores.slice(0, 10); // 上位10件を保持
+    fs.writeFileSync('tetris.date', JSON.stringify(scores));
+}
+
+function updateRanking() {
+    const ranking = document.getElementById('ranking');
+    ranking.innerHTML = '';
+    const fs = require('fs');
+    let scores;
+    try {
+        scores = JSON.parse(fs.readFileSync('tetris.date'));
+    } catch (err) {
+        scores = [];
+    }
+    scores.forEach((score, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${score}`;
+        ranking.appendChild(li);
+    });
+}
