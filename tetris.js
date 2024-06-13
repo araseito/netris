@@ -308,7 +308,7 @@ function startGame() {
 
 function resizeCanvas() {
     const container = document.querySelector('.tetris-container');
-    const aspectRatio = 1 / 2; // 1:2
+    const aspectRatio = 1 / 1; // 1:1
     const containerAspectRatio = container.clientWidth / container.clientHeight;
 
     let newWidth, newHeight;
@@ -343,7 +343,7 @@ function saveScore(score) {
     }
     scores.push(score);
     scores.sort((a, b) => b - a);
-    scores = scores.slice(0, 10); // 上位10件を保持
+    scores = scores.slice(0, 10); // 上位 10 件を保持
     fs.writeFileSync('tetris.date', JSON.stringify(scores));
 }
 
