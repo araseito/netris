@@ -87,8 +87,7 @@ function createPiece(type) {
     }
 }
 
-function drawMatrix(matrix, offset, context) {
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+function drawMatrix(matrix, offset) {
     matrix.forEach((row, y) => {
         row.forEach((value, x) => {
             if (value !== 0) {
@@ -101,8 +100,10 @@ function drawMatrix(matrix, offset, context) {
 
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    drawMatrix(arena, { x: 0, y: 0 }, context);
-    drawMatrix(player.matrix, player.pos, context);
+    context.fillStyle = '#000'; // 背景を黒で塗りつぶす
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    drawMatrix(arena, { x: 0, y: 0 }); // 既存のブロックを描画
+    drawMatrix(player.matrix, player.pos); // 現在のブロックを描画
 }
 
 function merge(arena, player) {
