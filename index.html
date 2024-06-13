@@ -8,22 +8,20 @@
 </head>
 <body>
     <div class="container">
-        <div class="left-sidebar">
-            <div class="illustration-container">
+        <div class="sidebar">
+            <div id="illustration-container">
                 <img id="illustration" src="gall/gall01.jpg" alt="Illustration">
             </div>
-            <div class="extra-space"></div>
         </div>
         <div class="tetris-container">
-            <canvas id="tetris" width="400" height="400"></canvas>
+            <canvas id="tetris" width="400" height="800"></canvas>
             <div id="game-over" style="display: none;">GAME OVER<br>Score: <span id="final-score"></span></div>
         </div>
-        <div class="right-sidebar">
-            <div class="score-container">
-                <h3>スコア</h3>
-                <p>Score: <span id="score">0</span></p>
+        <div class="sidebar">
+            <div id="score-container">
+                Score: <span id="score">0</span>
             </div>
-            <div class="controls-container">
+            <div id="controls">
                 <h3>コントロール</h3>
                 <p>ゲーム開始: Q キー</p>
                 <p>左に移動: 左矢印</p>
@@ -31,16 +29,6 @@
                 <p>下に移動: 下矢印</p>
                 <p>左回転: Q</p>
                 <p>右回転: W</p>
-            </div>
-            <div class="ranking-container">
-                <h3>ランキング</h3>
-                <ol id="ranking">
-                    <!-- ランキングのスコアがここに入る -->
-                </ol>
-            </div>
-            <div class="ad-container">
-                <h3>広告</h3>
-                <!-- 広告スペース -->
             </div>
         </div>
     </div>
